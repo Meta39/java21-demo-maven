@@ -1,9 +1,11 @@
 package com.fu.springboot3demo;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
+@Slf4j
 @EnableCaching //启用缓存并使用 caffeine
 //@EnableScheduling //启用定时任务【需要自定义 ThreadPoolTaskScheduler，否则是 @Scheduled 单线程的，即：ThreadPoolTaskScheduler.poolSize = 1】
 //TODO 如果使用这个方式的话,记得一定要指定 sqlSessionTemplateRef 或 sqlSessionFactoryRef https://github.com/mybatis/spring-boot-starter/wiki/Quick-Start-for-building-native-image#how-to-use-mapperscan

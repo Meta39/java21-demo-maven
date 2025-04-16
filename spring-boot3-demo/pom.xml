@@ -73,7 +73,11 @@
             <groupId>com.baomidou</groupId>
             <!-- Spring Boot2及以下用的是 mybatis-plus-boot-starter，Spring Boot3开始用 mybatis-plus-spring-boot3-starter -->
             <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-            <version>${mybatis-plus-spring-boot3-starter.version}</version>
+        </dependency>
+        <!-- MyBatis-Plus分页插件 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
         </dependency>
         <!-- cache 本地缓存【不引入 caffeine 默认用java自带的 ConcurrentHashMap 】 -->
         <dependency>
@@ -94,7 +98,6 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
         </dependency>
         <!-- RestClient 和 RestTemplate 使用 Apache httpclient5 连接池-->
         <dependency>
@@ -105,7 +108,6 @@
         <dependency>
             <groupId>org.graalvm.sdk</groupId>
             <artifactId>graal-sdk</artifactId>
-            <version>${GRAALVM_VERSION}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
