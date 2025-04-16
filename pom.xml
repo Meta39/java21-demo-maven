@@ -25,8 +25,11 @@
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
         <!-- 直接上最新的。https://github.com/graalvm/native-build-tools的changelog显示最少要0.9.27（0.9.26不太稳！） -->
         <native.maven.plugin.version>0.10.6</native.maven.plugin.version>
-        <!-- 这个最好跟 GraalVM的版本一致！ -->
-        <graal-sdk.version>23.1.6</graal-sdk.version>
+        <!-- IDEA 打开 Project Structure => Project Settings => Project => SDK 【GraalVM 21.0.6 - VM 23.1.6】（其中：21.0.6是JAVA_VERSION，23.1.6是GRAALVM_VERSION） -->
+        <!-- 【GraalVM JDK 版本】就是 GraalVM 根目录下的 release 文件里的 JAVA_VERSION 值。注意：JAVA21 不代表 GraalVM也是21。 -->
+        <JAVA_VERSION>21.0.6</JAVA_VERSION>
+        <!-- 【GraalVM 版本】就是 GraalVM 根目录下的 release 文件里的 GRAALVM_VERSION 值。注意：JAVA21 不代表 GraalVM也是21。 -->
+        <GRAALVM_VERSION>23.1.6</GRAALVM_VERSION>
         <!-- 直接用最新的 -->
         <lombok.version>1.18.38</lombok.version>
         <!-- 直接用最新的 -->
@@ -60,7 +63,7 @@
             <dependency>
                 <groupId>org.graalvm.sdk</groupId>
                 <artifactId>graal-sdk</artifactId>
-                <version>${graal-sdk.version}</version>
+                <version>${GRAALVM_VERSION}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- MyBatis-Plus -->

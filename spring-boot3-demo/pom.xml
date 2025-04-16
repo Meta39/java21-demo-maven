@@ -105,7 +105,7 @@
         <dependency>
             <groupId>org.graalvm.sdk</groupId>
             <artifactId>graal-sdk</artifactId>
-            <version>${graal-sdk.version}</version>
+            <version>${GRAALVM_VERSION}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -188,7 +188,7 @@
                     <buildArgs>
                         <JAR_NAME>${project.build.finalName}</JAR_NAME>
                         <!-- 通用 JRE 镜像 jre-${java.version}-slim-glibc 【推荐bellsoft 的 jre docker image，因为打出来的images比较小】 -->
-                        <JDK>bellsoft/liberica-runtime-container:jre-21.0.4-slim-glibc</JDK>
+                        <JDK>bellsoft/liberica-runtime-container:jre-${JAVA_VERSION}-slim-glibc</JDK>
                     </buildArgs>
                     <!-- docker 远程仓库地址【使用dockerfile:push的时候会使用】 -->
                     <repository>localhost:5000/${project.artifactId}</repository>
