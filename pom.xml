@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fu</groupId>
+    <artifactId>java21-demo-maven</artifactId>
+    <packaging>pom</packaging>
+    <version>1</version>
+
+    <!-- 子模块 -->
+    <modules>
+        <module>spring-boot3-demo</module>
+    </modules>
+
+    <properties>
+        <java.version>21</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <!-- maven.build.timestamp.format 如果项目太大不能设置到秒/分，编译超过1分钟就不能用分，否则会打包失败。并且时间时UTC时间，等于少了8小时！ -->
+        <maven.build.timestamp.format>yyyy-MM-dd_HH</maven.build.timestamp.format>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <!-- 直接上最新的。https://github.com/graalvm/native-build-tools的changelog显示最少要0.9.27（0.9.26不太稳！） -->
+        <native.maven.plugin.version>0.10.6</native.maven.plugin.version>
+        <!-- 这个最好跟 GraalVM的版本一致！ -->
+        <graal-sdk.version>23.1.6</graal-sdk.version>
+        <!-- 直接用最新的 -->
+        <lombok.version>1.18.38</lombok.version>
+        <!-- 直接用最新的 -->
+        <mybatis-plus-spring-boot3-starter.version>3.5.11</mybatis-plus-spring-boot3-starter.version>
+        <!-- 直接用最新的 -->
+        <redisson-spring-boot-starter.version>3.45.1</redisson-spring-boot-starter.version>
+        <!-- 直接用最新的 -->
+        <cxf-spring-boot-starter-jaxws.version>4.1.1</cxf-spring-boot-starter-jaxws.version>
+        <!-- 直接用最新的 -->
+        <springdoc-openapi-starter-webmvc-ui.version>2.8.6</springdoc-openapi-starter-webmvc-ui.version>
+        <!-- 已经停止维护了，但已经足够了。 -->
+        <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
+        <!-- 如果不需要Spring Cloud Alibaba，默认用最新的就行 -->
+        <spring-boot-dependencies.version>3.4.4</spring-boot-dependencies.version>
+        <!-- 如果不需要Spring Cloud Alibaba，默认用最新的就行 -->
+        <spring-cloud-dependencies.version>2023.0.3</spring-cloud-dependencies.version>
+        <!-- 如果需要使用Spring Cloud Alibaba 那么就要去官网查看推荐的Spring Boot、Spring Cloud、Spring Cloud Alibaba版本号使用 -->
+        <spring-cloud-alibaba-dependencies.version>2023.0.3.2</spring-cloud-alibaba-dependencies.version>
+    </properties>
+
+    <!-- 必要依赖 -->
+    <dependencies>
+
+    </dependencies>
+
+    <!-- 非必要依赖，子项目可选 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- 如果这里填写了 spring-boot-dependencies 里包含的依赖，则会以当前配置的为准 -->
+            <!-- mybaits 需要这个依赖才能打 native 包，而且要注意这个是 GraalVM 的版本，不是jdk的版本！！！【直接打开 GraalVM 的安装路径查看 release 文件里的 GRAALVM_VERSION】 -->
+            <dependency>
+                <groupId>org.graalvm.sdk</groupId>
+                <artifactId>graal-sdk</artifactId>
+                <version>${graal-sdk.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- MyBatis-Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus-spring-boot3-starter.version}</version>
+            </dependency>
+            <!--使用redisson作为分布式锁替换掉自定义分布式锁-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot-starter.version}</version>
+            </dependency>
+            <!-- apache cxf -->
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+                <version>${cxf-spring-boot-starter-jaxws.version}</version>
+            </dependency>
+            <!-- 集成Swagger -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+            </dependency>
+            <!-- Spring Boot 【放到最后面，因为前面定义了版本的话，就会覆盖Spring Boot自带的版本号】-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Spring Cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Spring Cloud Alibaba -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}-${maven.build.timestamp}</finalName>
+        <plugins>
+            <!-- Spring Boot Maven 插件【前面设置了版本就会替换掉 spring-boot-maven-plugin 里默认的版本号】 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <configuration>
+                    <!-- 打包导入设置了 systemPath 的jar包 -->
+                    <includeSystemScope>true</includeSystemScope>
+                    <!-- 删除target/classes重复的资源 -->
+                    <addResources>true</addResources>
+                    <!-- 打包时排除依赖【如果子项目也引用了maven-compiler-plugin，则以子项目的配置为准】 -->
+                    <excludes>
+                        <!--不打包lombok，因为lombok只在编译时使用，编译后就没用了-->
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                        <!--spring官方排除的依赖项-->
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                        </exclude>
+                        <!-- 排除 test -->
+                        <exclude>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-starter-test</artifactId>
+                        </exclude>
+                        <!-- 排除 log4j -->
+                        <exclude>
+                            <groupId>org.apache.logging.log4j</groupId>
+                            <artifactId>log4j-api</artifactId>
+                        </exclude>
+                        <exclude>
+                            <groupId>org.apache.logging.log4j</groupId>
+                            <artifactId>log4j-to-slf4j</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+                <!-- 解决打包没有把依赖Jar包打入springboot的jar包的问题 -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <!-- 排除打包文件 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>application*.yml</exclude>
+                    <exclude>application*.properties</exclude>
+                </excludes>
+            </resource>
+            <!-- 打包需要的文件 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- 解决yml配置@spring.profiles.active@时编译后没有生成对应环境的问题 -->
+                <filtering>true</filtering>
+                <!-- 只打包具体的环境，不打包其它环境的配置文件 -->
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>application.yml</include>
+                    <include>application-${spring.profiles.active}*.yml</include>
+                    <include>application.properties</include>
+                    <include>application-${spring.profiles.active}*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
+    <!-- 环境配置 -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <!--  默认激活-->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <spring.profiles.active>test</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

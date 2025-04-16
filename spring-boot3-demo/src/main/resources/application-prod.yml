@@ -1,0 +1,33 @@
+logging:
+  level:
+    #spring根日志级别
+    root: error
+    #spring web日志级别
+    web: error
+    #项目日志级别
+    com.fu.springboot3demo: error
+    #SQL日志打印
+    com.fu.springboot3demo.mapper: debug
+  file:
+    #日志存放路径
+    path: ./log/${spring.application.name}/${spring.profiles.active}
+    #日志名称
+    name: '${logging.file.path}.log'
+  charset:
+    #输出到文件编码
+    file: UTF-8
+  pattern:
+    #输出到文件的样式
+    file: '%d{${LOG_DATEFORMAT_PATTERN:HH:mm:ss}} ${LOG_LEVEL_PATTERN:-%5p} ${PID: } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}'
+  logback:
+    rollingpolicy:
+      #重启是否清除日志，默认：否
+      clean-history-on-start: false
+      #切割日志格式
+      file-name-pattern: ${logging.file.path}.%d{yyyy-MM-dd}.%i.log
+      #单个日志文件最大大小
+      max-file-size: 10MB
+      #全部日志文件最大大小
+      total-size-cap: 50GB
+      #日志存放天数
+      max-history: 15

@@ -1,0 +1,71 @@
+server:
+  port: 8080
+  # 启用 HTTP 响应压缩
+  compression:
+    enabled: true
+
+# RestClient 和 RestTemplate 请求 url 路径
+rest:
+  base-url: "http://127.0.0.1:${server.port}"
+
+#日志配置
+logging:
+  pattern:
+    # 控制台日期输出格式
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+
+spring:
+  application:
+    name: '@artifactId@'
+  profiles:
+    active: '@spring.profiles.active@'
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  main:
+    # 虚拟线程的一个副作用是它们是守护进程线程。如果JVM的所有线程都是守护进程线程，则JVM将退出。
+    # 例如，当您依赖@Scheduled bean来保持应用程序的活力时，这种行为可能会成为一个问题。
+    # 如果使用虚拟线程，则调度程序线程是一个虚拟线程，因此是一个守护进程线程，不会使JVM保持活动状态。这不仅会影响调度，其他技术也可能如此。
+    # 为了在所有情况下保持JVM的运行，建议将属性spring.main.keep-alive设置为true。这确保JVM保持活动状态，即使所有线程都是虚拟线程。
+    keep-alive: true
+  threads:
+    virtual:
+      # 启用虚拟线程
+      enabled: true
+  mvc:
+    problemdetails:
+      # 404返回json格式，而不是返回页面
+      enabled: true
+  cache:
+    # 本地缓存类型：caffeine
+    type: caffeine
+    # 缓存名称（多个用英文,隔开）【使用方式：@Cacheable("cache1")】
+    cache-names: "cache1,cache2"
+    caffeine:
+      # initialCapacity：初始容量值、maximumSize：最大缓存数量、expireAfterWrite：过期时间
+      spec: "initialCapacity=50,maximumSize=500,expireAfterWrite=30s"
+  # 数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/spring_boot_demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+# 定时任务线程池配置
+scheduler:
+  pool-size: 8
+  thread-name-prefix: "myTaskScheduler"
+
+mybatis-plus:
+  # 默认：classpath:/mapper/**.xml。对于 Maven 多模块项目，扫描路径应以 classpath*: 开头，以加载多个 JAR 包中的 XML 文件。
+  mapper-locations: classpath:/mapper/**.xml
+  configuration:
+    # 下划线转驼峰
+    map-underscore-to-camel-case: true
+  global-config:
+    # 输出图标
+    # banner: false
+    db-config:
+      # 主键生成类型，默认：ASSIGN_ID
+      id-type: input
