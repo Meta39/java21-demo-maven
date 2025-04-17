@@ -13,8 +13,8 @@ set JAVA_HOME=C:/Users/X/.jdks/graalvm-jdk-21.0.6
 @echo 用于启动运行 Maven 的 JVM 的参数
 set MAVEN_OPTS= -Xms2048m -Xmx2048m -XX:MaxMetaspaceSize=512m -XX:ReservedCodeCacheSize=512m
 
-set PACKAGE_CMD=clean compile spring-boot:process-aot native:compile-no-fork
-echo mvn %PACKAGE_CMD% ......
-start /B /WAIT cmd /c "mvn %PACKAGE_CMD% -f pom.xml -P%PROFILES%"
+set PACKAGE_CMD=mvn clean compile spring-boot:process-aot native:compile-no-fork -f pom.xml -P%PROFILES%
+echo %PACKAGE_CMD% ......
+start /B /WAIT cmd /c "%PACKAGE_CMD%"
 
 exit
