@@ -12,10 +12,13 @@
     <!-- 子模块 -->
     <modules>
         <module>spring-boot3-demo</module>
+        <module>spring-boot3-starter-demo</module>
+        <module>spring-boot3-starter-use-demo</module>
     </modules>
 
     <properties>
         <java.version>21</java.version>
+        <spring-boot3-starter-demo.version>1.0.0</spring-boot3-starter-demo.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <!-- maven.build.timestamp.format 如果项目太大不能设置到秒/分，编译超过1分钟就不能用分，否则会打包失败。并且时间时UTC时间，等于少了8小时！ -->
