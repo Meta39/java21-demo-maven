@@ -13,8 +13,10 @@ import java.util.TreeMap;
 
 @Slf4j
 public class CryptoTests {
-    private static final String rsaPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv6iHWPRog0rU03Uz1cjZCwJjXaAwgMFowCeEKTlO57Qr/5q6V829jCFBsBFT62b/tIYpVi3cXZAlMPePueBZ29PAncmXY32m2L8lrUv44P2iijVSeLBOtdCeG77m/Tp+Ff++APvp3uCbGC79wdgIVtgKjX39SWjQz+UluJsb02g+YO/CP6bNnJCXed9OQv4iNRfojCJR2HWKIRdHf27WHs4kPvW5EpuhMgou1jLQEuQoYwN5ZUZENjbWHwjAwVysxagZzNjehIRsApDWOvfBUiMh+091sehbiMT1T2qvwpcKpSepHxOVCKJTz9zppi3c7f8iLcGYSB9cvkx3hgsq8QIDAQAB";
-    private static final String rsaPrivateKey = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC/qIdY9GiDStTTdTPVyNkLAmNdoDCAwWjAJ4QpOU7ntCv/mrpXzb2MIUGwEVPrZv+0hilWLdxdkCUw94+54Fnb08CdyZdjfabYvyWtS/jg/aKKNVJ4sE610J4bvub9On4V/74A++ne4JsYLv3B2AhW2AqNff1JaNDP5SW4mxvTaD5g78I/ps2ckJd5305C/iI1F+iMIlHYdYohF0d/btYeziQ+9bkSm6EyCi7WMtAS5ChjA3llRkQ2NtYfCMDBXKzFqBnM2N6EhGwCkNY698FSIyH7T3Wx6FuIxPVPaq/ClwqlJ6kfE5UIolPP3OmmLdzt/yItwZhIH1y+THeGCyrxAgMBAAECggEAOVDeASU+aB0l3oMLWGCzP86cBrDUMH0mpWhr5qQjy7ke+1a7aWy2xcRgT5YvAZQQ3lzM2d/nKffkl2tBiTXlyY7e6JET/AXksqcfTl8M88QGKszdeAhJ0aes0OFbVNl8QXn0yXiMrUGAQFA1RRYlEEuVhFDsQVreL334tOd1/9eFPLbBJh01RSaIxsiiJ/7w/+1+1zggTlt5cQslRD3Kxr40YCa+QeRLJrqyARZKcbPB9RLZJ6AXI5wIlHos6czumcbGzQdgEs79pXw439xLas+UnX3+8tGe1QS693WtTnalbDF8ctGvuSmZJSG4PSlsWBiuaBxK8XO8MLmcugvknQKBgQDpfv9xhkU/Rh93+0X/ABi/WHiyvX9t19EmGQoQvWWyw9Qr1PR8XWG9XE02pDK9mB+Xg8HU/BLyiTYjviWc7Uro8l9qCGQLDhyCfJYtk/Pkbk3+zymMtZCItLqpM1AKfj8SLP6P9j7wcaOxINonfBAQeQJTXWs4ysTEMotJZui9pwKBgQDSIUakpgTJEoJxrQCd7MPAemPYz2uhyRRpgrv6Ws6Kz8awFfM0DXpm79MjlvpYGXrwwvreszFgOwxshE0eeSx4pReXq7b/CNrghHqOXuyfQzk89/89u9Ks2Vlccp4d1uYPL6Rhjrzc+t/vnyfIuR9VVrxhSuaqwW/JdOl1BqlVpwKBgQDCKaH+4/l3STdnzSICjzEFBGuxrlRlod5AgPfWvbfwtFkdbcM0G27oSPXIJzguYm56zsyC8G5NEn5bsIWUfdoZ5VokUP/oFX7tnu4+zlY0MOlYpynU4TJkC21gv9OiNiL6WUIBsnHZ/ZVx+HCP/uFY4VdmvTspCawfviwHCLUm5wKBgDwEsyfOH6nK9qU/c+CnwtXUX3aK8EQ6qfDlHYoJq9rsM+URr/CbNO337EfLFOBbDsl796nqZt0EoKzSMTDWDYS8KvvwWQmJXvMoA9VseYuX6N5oO2hHoIosXqDQQCdnvThzNDGFUp6PrazEudlUPwXiC1aCzVXSgHp7QT9i0rUbAoGBANQH4l1BBVWfO/hwrq77ujYwZ9dEs3864KLev1C/eSv0psJ6Uc5ZV8eIgp5s2gIbWGNsRWjClsvChJfoqOrNqrjf8xk5BU8q3U3QISoUBPBWkQBzbqzEG9mcjYMjsvXJwdD5p+EoBcOq3F8dEP6ORd8Y47XKDJ3URWZcH4QVpbvL";
+    private static final String rsaPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoChSVQX89qZ8eEc8/nxgSJvebExnCgGxrvxuolsYSIATs9SlKd7hOZCAT3xQEFKiHECOeZUTt5b9812uEk9a/aSyZN2hnX3gM+uZxZi4E0N5ezaM9fdnRakOuE/vaSEEQntj3p/Maz7gNXb+XleK0fsfF9D+boWKCRDNGjAduBEJeQCjacD/DHUjfEqj1gjPoN5Dz2dokb7gQ5ZxEko20tnRkaGlzuE9RJtijShXobwzZ0Gz0BPu7mFvicwYRSIsXtXdcBv3E8+rzLEXVbpVEUnMVIqXQRY3ZDt3sRf1j8+1FoPZ6NlwrQt6Zsx0igc5NxXnmugz1bbzBjdled5kLQIDAQAB";
+    private static final String rsaPrivateKey = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCgKFJVBfz2pnx4Rzz+fGBIm95sTGcKAbGu/G6iWxhIgBOz1KUp3uE5kIBPfFAQUqIcQI55lRO3lv3zXa4ST1r9pLJk3aGdfeAz65nFmLgTQ3l7Noz192dFqQ64T+9pIQRCe2Pen8xrPuA1dv5eV4rR+x8X0P5uhYoJEM0aMB24EQl5AKNpwP8MdSN8SqPWCM+g3kPPZ2iRvuBDlnESSjbS2dGRoaXO4T1Em2KNKFehvDNnQbPQE+7uYW+JzBhFIixe1d1wG/cTz6vMsRdVulURScxUipdBFjdkO3exF/WPz7UWg9no2XCtC3pmzHSKBzk3Feea6DPVtvMGN2V53mQtAgMBAAECggEAAfo9egGtUlMf7YRDqbvzaTIZ5V06ihJKe8FvxEVuEu1+ty7q+Y3GjiVnA2EJKnDUW5dYd88L0HqAZdIRGI/7EzxGj53ei8lGf9DRTaVJfV0AUcsmPNGlm5b7/YtoucDHz3vvWCWOkP+hWRRzc5eOuT6c70Ulvxhn0FDXl3kv0Y2Vsv7gCjE72KQWS8DwRU1e60h6mhLrI+a9HDBCSa+o+V8/U4pOF5xV08leP7aErbUU1m9XTE0YSA7Wzhl7hMVzwjl4RYtm0dOP18bM4mUAhP8bVd/+9XVQAcjNheMmE3H+PS6ZShiAmJ19A7g8AJv1McaelkEl+NWV6OzRqMbCwQKBgQDMsGR4Xsy5RLZ9PW9CyofmlErADsnE6sVPSgYKoysro6EfBK43gPxlJrIiwz5QUOSYdXhG+er14h5rbvX5MEJJKhiYzX6h3WHPCVKJPgpuAYic0DVL4nyYlx70rdta6MW5Z5PBGC+rZW6AeQrdiDnWAOEnenXh2ovUbZ6e75yzhQKBgQDITi+lEuc57LeFA7/pQeeYO7b7y4YY8/PODkOQNhDqNZrtpqEqoSbTRQPP9fZOXNA4RBxle88x4aQutOB+CU4RHhQshh5recG9VhWVLj9+qZ/tBf/+GMm//RGYTpJJWXH562oQPlEY00q2elT50x6w/pXSc8v4A2hCHsG3vFyqiQKBgB1Ja8axQbeMdlPrE11KHzHFrABY3VO4h6y1mbGx8P5Ydjg68jZs1TAf3kMNDoBtYpfRzvjQz2aJCPM0OCuEVSekx0ottN2yEEmQOuf6IYHl5EcTn1yRNmSa0soNiiIyxf+mK0TokgGDDNGDACP8VtIg5BZC9lTvcSxe1uBExnYFAoGANT67YYkF2Br5qa0WfZ3cP1ZYTNSMH+PxQiv+f74vfuKi/VtW6isOVAi7e7NpNulrHBnW5o8jw6G0cAn6xuYYT2qMeE1qlq019+uDLzWtATF75pi6tMPIFXXjEHaKYl8ZchLHDexSyGOaL6mTHxmkxe3Wy6umY5YcR78/RWUXyOkCgYEAtJuF8mLkLFf134F5Xn2FlNKNGqpkmDqwd4KOT3AoM7bqVRA+Qp8a487mFYe0lQOMeJtoRyiFdAOmnijMhqB6vIz2WKT9CxoyZWIb7a6m8CBiXXBDza0rxcOiafHvftcLyN+rDMuiSkp7btBq28ZGvBfjZPN2vAi+SnZteRHond0=";
+    private static final String ecPublicKey = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqmkDEss9EJHdZZ7ScirhFLbt1RZUO/8PDK1Bm0PVZx60D23G/pTpmuCNuf6JlPJL7YM8LUsdK4s7w67KuGByUg==";
+    private static final String ecPrivateKey = "MEECAQAwEwYHKoZIzj0CAQYIKoZIzj0DAQcEJzAlAgEBBCBfSyvAqhY3EEVGubh49r0R67zIcG9/STwqo5EycL76eg==";
 
     @Test
     public void generateRSAKeyPair() {
@@ -22,25 +24,30 @@ public class CryptoTests {
     }
 
     @Test
+    public void generateECKeyPair() {
+        CryptoUtils.generateECKeyPair();
+    }
+
+    @Test
     public void encrypt() {
         // 1. 先获取生成RSA密钥对存储为常量
-        // 2. AES加密数据
+        // 2. AES-GCM加密数据
         Map<String,Object> dataMap = new HashMap<>();
         dataMap.put("name", "Meta39");
         dataMap.put("age", 18);
         dataMap.put("sex", "Man");
         String json = JacksonUtils.objectToJson(dataMap);
 
-        //3.获取AES密钥
-        String aesKeyStr = CryptoUtils.generateAESKey();
-        //4.获取AES IV
+        //3.获取AES-GCM密钥
+        String aesGcmKeyStr = CryptoUtils.generateAESKey();
+        //4.获取AES-GCM IV
         String ivStr = CryptoUtils.generateIv();
 
-        //5.用AES密钥对数据进行加密
-        String cipherText = CryptoUtils.aesEncrypt(aesKeyStr, ivStr, json);
+        //5.用AES-GCM密钥对数据进行加密
+        String cipherText = CryptoUtils.aesEncrypt(aesGcmKeyStr, ivStr, json);
 
         //6.RSA加密AES密钥
-        String encryptedAesKey = CryptoUtils.rsaEncrypt(rsaPublicKey, aesKeyStr);
+        String encryptedAesKey = CryptoUtils.rsaEncrypt(rsaPublicKey, aesGcmKeyStr);
 
         //7.构建签名用payload（不含签名字段）
         TreeMap<String, String> payloadTreeMap = new TreeMap<>();
@@ -51,19 +58,19 @@ public class CryptoTests {
 
         //8.生成数字签名（自动按字段名排序）
         String signingData = JacksonUtils.objectToJson(payloadTreeMap);//签名数据
-        String signature = CryptoUtils.signData(rsaPrivateKey, signingData);//签名算法加密签名数据
+        String signature = CryptoUtils.signData(ecPrivateKey, signingData);//EC私钥签名
 
         //9.构建最终传输payload（含签名字段【签名算法之后再把签名数据放入】）
         payloadTreeMap.put("signature", signature);
 
         //10.加密数据转为JSON
         String encryptedData = JacksonUtils.objectToJson(payloadTreeMap);
-        log.info("encryptedData:{}", encryptedData);
+        log.info("encryptedData2:{}", encryptedData);
     }
 
     @Test
     public void decrypt() {
-        String encryptedData = "{\"cipherText\":\"7cqXofQ9+sn1p26aLowceeaiAiYAw4zS004dgCmb7ePjxLYgLIcDDic7+K//E5+C\",\"encryptedKey\":\"UoWGVQslJ3T4XAwVAvtf5gM4IgH8ZpBBYMXkoDT9+/ZswnI/gknFYZtlOrF9f7kJFhbHnf8JwuGUfhnd3Q3TYOz7GuNuSU/CmQ6y/LK6qU2VQOThfZes7d1WhsIYJulDrLo7tNrLNneZeDqF+L7qbkNNYJuQFFprYJf83u/M7E8OuP8aoRbgfdkBkQ3o1+UEmphnJ4qu6FNmy7C5DyXFF6SoahGvI1BbuyEtzeSDW5kq3K7etIgOLxK2ITeN2O7gA7T8AII/xzL0GHjzSEX78OK7BV5j/z8Nw09M01SFpuqu0SWqxEzTOOX0VBWCuYBRYayS2Jie9VBRUzR7ULbR0g==\",\"iv\":\"xHVKJf/jYaDouW95sjoIQg==\",\"signature\":\"BgSEgjDWyT8ba7E/0DiuqCvM96VXwg8tCnl5/Y2VO9mJtnl6HuF2Q1r7CB9c5vnzwQtsOqG9TVLPbc5FX6Dn8Ky1Rz5Zalg8p3auq5k2pmIrIrACTc/o1BUcLpNIKgabra7o10YLr1WgNcfCLxYxqXqdo9xKMPBNNzBCf+gnbo0Y77kOnUGVM8kIoy3hQvqI2GW+1O4kJQP+tCmakqHYISsqjAWZdH3FtagK/9pGA06G6bwE0edkEj8u++wi9/TOI43Cgm/L8JSauStCeSneI0I85OuIXVy3TjXcBUApEMFe+clZi31g8FyJWC88p8jMJ6QJKq87lt+8nNjNMLU3CQ==\",\"timestamp\":\"1745388880\"}";
+        String encryptedData = "{\"cipherText\":\"kn5B+Eu6Q/yjzRpv9AOSJDIzpJF8S3g66o19weo8TJVGOvToHiKhcoImzvoyIhOOfuz6li9t\",\"encryptedKey\":\"TeEqErRmVWrttrBm4AjHGcm/99oPmSCP8vZ2b8xGeNLXhzpEXNK36b4yAYxjmFtpPGao8t5JYqCllJiWAPG30nBuVh9UxPBTwElK2x7Wrp/28ILZFO6atfD/F7Q6o6/d9rIGgF3gNOzlXub/5rOnU2RRxOs5LTeA1OpaQMjaICyq4y2ZUeIHOVu+wCefaWwlxuQVxdfyw9VgpPVtimHIIYhMm3ADQehvNnbYZca9wHDaS/gJBZTPge9hhfAWv9AcqnaytiSxMkVAdI/myTFouLC9SdGVBh2C0B7RQskRBauKVgYdap7fp/QarWWY1k5iKD5W6l3iy2wcip4z1hS5uQ==\",\"iv\":\"25THEWX4W8B72cNA\",\"signature\":\"MEYCIQDcfYLIeGvTlMnvyCg7IKxvc8qJWOzVpFzJe6K7yhAdBQIhAMg/tRHpbKIwfhFOHzcvAlz7RifsVZT/lvsnM+yM9YUE\",\"timestamp\":\"1745412495\"}";
         //1.解析接收数据（必须为TreeMap，防止不按顺序导致解析失败。）
         TreeMap<String, String> receivedData = JacksonUtils.jsonToObject(encryptedData, new TypeReference<>() {
         });
@@ -73,8 +80,8 @@ public class CryptoTests {
         //3.把移除key内容之后从treeMap转为JSON字符串（即：不包含签名的TreeMap）
         String verificationData = JacksonUtils.objectToJson(receivedData);
 
-        //4.验证签名
-        boolean valid = CryptoUtils.verifySignature(rsaPublicKey, verificationData, receivedSignature);
+        //4.验证EC签名
+        boolean valid = CryptoUtils.verifySignature(ecPublicKey, verificationData, receivedSignature);
 
         if (!valid) {
             throw new SecurityException("Invalid signature");
