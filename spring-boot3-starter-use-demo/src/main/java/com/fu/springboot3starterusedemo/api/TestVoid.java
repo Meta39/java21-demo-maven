@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class Test implements PostApi<String> {
+public class TestVoid implements PostApi<String> {
 
     /**
      * 返回值类型任意，因为不需要处理。

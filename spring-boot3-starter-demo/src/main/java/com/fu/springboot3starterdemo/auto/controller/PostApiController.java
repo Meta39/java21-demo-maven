@@ -5,6 +5,8 @@ import com.fu.springboot3starterdemo.auto.bean.BeanUtils;
 import com.fu.springboot3starterdemo.dto.Res;
 import com.fu.springboot3starterdemo.exception.PostApiException;
 import com.fu.springboot3starterdemo.util.JacksonUtils;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -14,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 public class PostApiController {
+    private final Validator validator;
 
     /**
      * 统一接口入口
@@ -38,6 +43,16 @@ public class PostApiController {
         }
         Class<T> requestClass = (Class<T>) BeanUtils.BEAN_TYPE_MAP.get(serviceName);
         T requestType = JacksonUtils.jsonToObject(body, requestClass);
+
+        // 手动参数校验
+        Set<ConstraintViolation<T>> violations = validator.validate(requestType);
+        if (!violations.isEmpty()) {
+            String errorMessage = violations.stream()
+                    .map(v -> v.getPropertyPath() + ": " + v.getMessage())
+                    .collect(Collectors.joining("; "));
+            return Res.error(400, "参数校验失败: " + errorMessage);
+        }
+
         Object response;
         try {
             response = postApi.execute(requestType);
