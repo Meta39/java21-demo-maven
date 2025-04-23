@@ -109,7 +109,7 @@ public class HibernateSortTests {
 
         log.info("对象（值为null也输出）{}", result);
         //JacksonUtils配置了值为null，则不序列化
-        log.info("JSON(值为null，不序列化)：{}", JacksonUtils.JSON.writeValueAsString(result));
+        log.info("JSON(值为null，不序列化)：{}", JacksonUtils.objectToJson(result));
     }
 
     /**
@@ -143,7 +143,7 @@ public class HibernateSortTests {
         bSxml.setData(result);
         log.info("对象（值为null也输出）{}", bSxml);
         //JacksonUtils配置了值为null，则不序列化
-        log.info("XML(值为null，不序列化)：{}", JacksonUtils.XML.writeValueAsString(bSxml));
+        log.info("XML(值为null，不序列化)：{}", JacksonUtils.objectToXml(bSxml));
     }
 
     /**
@@ -230,7 +230,7 @@ public class HibernateSortTests {
         // 将分组结果存入顶层报告
         List<InspectionTestRecord> inspectionTestRecords = new ArrayList<>(recordMap.values());
 
-        log.info("{}", JacksonUtils.JSON.writeValueAsString(inspectionTestRecords));
+        log.info("{}", JacksonUtils.objectToJson(inspectionTestRecords));
     }
 
 }

@@ -1,6 +1,5 @@
 package com.fu.springboot3demo;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fu.springboot3demo.generic.response.Response1;
 import com.fu.springboot3demo.generic.response.Response2;
 import com.fu.springboot3demo.util.JacksonUtils;
@@ -14,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class BaseResponseTests {
 
     @Test
-    void testBaseResponse() throws JsonProcessingException {
+    void testBaseResponse() {
         Response1 response1 = new Response1().ok();
         response1.setId(1L);
 
@@ -25,8 +24,8 @@ public class BaseResponseTests {
 
         Response2 error2 = new Response2().err("error2");
 
-        log.info("Response1:{}\nResponse2:{}", JacksonUtils.JSON.writeValueAsString(response1), JacksonUtils.JSON.writeValueAsString(response2));
-        log.error("Response1 error:{}\nResponse2 error:{}", JacksonUtils.JSON.writeValueAsString(error1), JacksonUtils.JSON.writeValueAsString(error2));
+        log.info("Response1:{}\nResponse2:{}", JacksonUtils.objectToJson(response1), JacksonUtils.objectToJson(response2));
+        log.error("Response1 error:{}\nResponse2 error:{}", JacksonUtils.objectToJson(error1), JacksonUtils.objectToJson(error2));
     }
 
 }

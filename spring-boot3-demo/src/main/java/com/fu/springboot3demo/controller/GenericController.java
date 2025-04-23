@@ -27,7 +27,7 @@ public class GenericController {
         //通过缓存获取对应 GenericService 实现类 invoke 函数的具体泛型入参。
         Class<T> requestType = (Class<T>) GenericServiceTypeCache.getRequestType(serviceName);
         // 将 JSON 字符串请求参数转换为具体的类型
-        T reqObject = JacksonUtils.JSON.readValue(requestBody, requestType);
+        T reqObject = JacksonUtils.jsonToObject(requestBody, requestType);
         try {
             return R.ok(genericService.invoke(reqObject));
         } catch (Exception e) {
