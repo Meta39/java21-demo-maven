@@ -16,7 +16,9 @@
         <module>spring-boot3-starter-use-demo</module>
     </modules>
 
+    <!-- properties 定义的变量名可以在执行 mvn 时使用 -D变量名=变量值 进行修改，如：mvn -Dmy.property=newValue -->
     <properties>
+        <my.property>defaultValue</my.property>
         <java.version>21</java.version>
         <spring-boot3-starter-demo.version>1.0.0</spring-boot3-starter-demo.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
