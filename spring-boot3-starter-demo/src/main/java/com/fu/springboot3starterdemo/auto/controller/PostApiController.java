@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -47,10 +46,10 @@ public class PostApiController {
         // 手动参数校验
         Set<ConstraintViolation<T>> violations = validator.validate(requestType);
         if (!violations.isEmpty()) {
-            String errorMessage = violations.stream()
-                    .map(v -> v.getPropertyPath() + ": " + v.getMessage())
-                    .collect(Collectors.joining("; "));
-            return Res.error(400, "参数校验失败: " + errorMessage);
+            for (ConstraintViolation<T> violation : violations) {
+                //有一个校验失败就直接返回，不必等到全部校验完才返回。提升程序响应速度。
+                return Res.error(400, violation.getPropertyPath() + ":" + violation.getMessage());
+            }
         }
 
         Object response;
