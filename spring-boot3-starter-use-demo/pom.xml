@@ -26,9 +26,8 @@
         </dependency>
         <!-- 引入自定义的starter -->
         <dependency>
-            <groupId>com.fu</groupId>
+            <groupId>com.fu.springbootstarter</groupId>
             <artifactId>spring-boot3-starter-demo</artifactId>
-            <version>${spring-boot3-starter-demo.version}</version>
             <!-- 防止依赖传递 -->
             <optional>true</optional>
         </dependency>

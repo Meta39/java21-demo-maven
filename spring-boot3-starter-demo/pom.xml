@@ -6,10 +6,16 @@
         <artifactId>java21-demo-maven</artifactId>
         <version>1</version>
     </parent>
+
+    <!--
+    如果需要推送到本地仓库的jar，不能使用和 parent 一样的groupId，
+    如果使用和 parent 一样的groupId，则使用 starer 的项目会报错！！！
+     -->
+    <groupId>com.fu.springbootstarter</groupId>
     <artifactId>spring-boot3-starter-demo</artifactId>
-    <name>spring-boot3-starter-demo</name>
-    <!-- 自定义starter自己的版本 -->
-    <version>${spring-boot3-starter-demo.version}</version>
+    <name>${project.artifactId}</name>
+    <!-- 不用自定义 starter 自己的版本，这样就会使用 ${project.version} 也就是 parent 的 version -->
+    <!-- <version>${spring-boot3-starter-demo.version}</version> -->
 
     <dependencies>
         <!-- lombok【非必须】 -->
@@ -76,9 +82,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot-dependencies.version}</version>
                 <configuration>
                     <mainClass>none</mainClass>
+                    <classifier>exec</classifier>
                     <!-- 打包导入设置了 systemPath 的jar包 -->
                     <includeSystemScope>true</includeSystemScope>
                     <!-- 删除target/classes重复的资源 -->

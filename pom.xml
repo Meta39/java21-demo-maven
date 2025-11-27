@@ -63,6 +63,11 @@
     <!-- 非必要依赖，子项目可选 -->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.fu.springbootstarter</groupId>
+                <artifactId>spring-boot3-starter-demo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- 如果这里填写了 spring-boot-dependencies 里包含的依赖，则会以当前配置的为准 -->
             <!-- mybaits 需要这个依赖才能打 native 包，而且要注意这个是 GraalVM 的版本，不是jdk的版本！！！【直接打开 GraalVM 的安装路径查看 release 文件里的 GRAALVM_VERSION】 -->
             <dependency>
