@@ -15,6 +15,8 @@ set MAVEN_OPTS= -Xms4g -Xmx4g -XX:MaxMetaspaceSize=512m -XX:ReservedCodeCacheSiz
 
 set PACKAGE_CMD=mvn clean compile spring-boot:process-aot native:compile -DskipTests -Dmaven.compile.fork=true -T %THREAD% -f pom.xml -P%PROFILES%
 echo %PACKAGE_CMD% ......
-start /B /WAIT cmd /c "%PACKAGE_CMD%"
+%PACKAGE_CMD%
+@REM 不能用start /B /WAIT cmd /c "%PACKAGE_CMD%"，因为新开窗口会丢失 set 的参数
+@REM start /B /WAIT cmd /c "%PACKAGE_CMD%"
 
 exit
