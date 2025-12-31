@@ -48,11 +48,11 @@
         <!-- 已经停止维护了，但已经足够了。 -->
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
         <!-- 如果不需要Spring Cloud Alibaba，默认用最新的就行 -->
-        <spring-boot-dependencies.version>3.5.8</spring-boot-dependencies.version>
+        <spring-boot-dependencies.version>3.5.9</spring-boot-dependencies.version>
         <!-- 如果不需要Spring Cloud Alibaba，默认用最新的就行 -->
         <spring-cloud-dependencies.version>2023.0.3</spring-cloud-dependencies.version>
         <!-- 如果需要使用Spring Cloud Alibaba 那么就要去官网查看推荐的Spring Boot、Spring Cloud、Spring Cloud Alibaba版本号使用 -->
-        <spring-cloud-alibaba-dependencies.version>2023.0.3.2</spring-cloud-alibaba-dependencies.version>
+        <spring-cloud-alibaba-dependencies.version>2023.0.3.4</spring-cloud-alibaba-dependencies.version>
     </properties>
 
     <!-- 必要依赖 -->
