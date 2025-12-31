@@ -37,8 +37,10 @@
         <GRAALVM_VERSION>23.1.6</GRAALVM_VERSION>
         <!-- 直接用最新的 -->
         <lombok.version>1.18.38</lombok.version>
+        <!-- spring boot 1.X 和 2.X 用 druid-spring-boot-starter，3.X+ 用 druid-spring-boot-3-starter -->
+        <druid-spring-boot-3-starter.version>1.2.27</druid-spring-boot-3-starter.version>
         <!-- 直接用最新的 -->
-        <mybatis-plus-bom.version>3.5.11</mybatis-plus-bom.version>
+        <mybatis-plus-bom.version>3.5.15</mybatis-plus-bom.version>
         <!-- 直接用最新的 -->
         <redisson-spring-boot-starter.version>3.45.1</redisson-spring-boot-starter.version>
         <!-- 直接用最新的 -->
@@ -67,6 +69,12 @@
                 <groupId>com.fu.springbootstarter</groupId>
                 <artifactId>spring-boot3-starter-demo</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <!-- druid 数据库连接池 （Spring Boot）-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-3-starter</artifactId>
+                <version>${druid-spring-boot-3-starter.version}</version>
             </dependency>
             <!-- 如果这里填写了 spring-boot-dependencies 里包含的依赖，则会以当前配置的为准 -->
             <!-- mybaits 需要这个依赖才能打 native 包，而且要注意这个是 GraalVM 的版本，不是jdk的版本！！！【直接打开 GraalVM 的安装路径查看 release 文件里的 GRAALVM_VERSION】 -->
