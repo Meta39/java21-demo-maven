@@ -6,7 +6,7 @@ chcp 65001 > nul
 @echo 确保 Windows 安装了 Visual Studio Community
 
 @echo 如果JAVA_HOME和mvn不一致，则手动修改jdk版本。如果打包失败，说明这里set JAVA_HOME好像没什么用，还是得设置环境变量为graalvm的地址。
-set JAVA_HOME=C:/Users/X/.jdks/graalvm-jdk-21.0.6
+set JAVA_HOME=C:/Users/X/.jdks/graalvm-jdk-21.0.7
 
 set PACKAGE_CMD=mvn clean compile spring-boot:process-aot native:compile -DskipTests -f pom.xml
 echo %PACKAGE_CMD% ......

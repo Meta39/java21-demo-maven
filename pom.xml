@@ -29,12 +29,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
         <!-- 直接上最新的。https://github.com/graalvm/native-build-tools的changelog显示最少要0.9.27（0.9.26不太稳！） -->
-        <native.maven.plugin.version>0.10.6</native.maven.plugin.version>
-        <!-- IDEA 打开 Project Structure => Project Settings => Project => SDK 【GraalVM 21.0.6 - VM 23.1.6】（其中：21.0.6是JAVA_VERSION，23.1.6是GRAALVM_VERSION） -->
+        <native.maven.plugin.version>0.11.3</native.maven.plugin.version>
+        <!-- IDEA 打开 Project Structure => Project Settings => Project => SDK 【GraalVM 21.0.7 - VM 23.1.7】（其中：21.0.7是JAVA_VERSION，23.1.7是GRAALVM_VERSION） -->
         <!-- 【GraalVM JDK 版本】就是 GraalVM 根目录下的 release 文件里的 JAVA_VERSION 值。注意：JAVA21 不代表 GraalVM也是21。 -->
-        <JAVA_VERSION>21.0.6</JAVA_VERSION>
+        <JAVA_VERSION>21.0.7</JAVA_VERSION>
         <!-- 【GraalVM 版本】就是 GraalVM 根目录下的 release 文件里的 GRAALVM_VERSION 值。注意：JAVA21 不代表 GraalVM也是21。 -->
-        <GRAALVM_VERSION>23.1.6</GRAALVM_VERSION>
+        <GRAALVM_VERSION>23.1.7</GRAALVM_VERSION>
         <!-- 直接用最新的 -->
         <lombok.version>1.18.38</lombok.version>
         <!-- spring boot 1.X 和 2.X 用 druid-spring-boot-starter，3.X+ 用 druid-spring-boot-3-starter -->
