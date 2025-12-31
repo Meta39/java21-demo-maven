@@ -131,6 +131,26 @@
 
     <build>
         <finalName>${project.artifactId}-${project.version}-${maven.build.timestamp}</finalName>
+        <pluginManagement>
+            <plugins>
+                <!-- AOT Graalvm native maven 插件 -->
+                <plugin>
+                    <groupId>org.graalvm.buildtools</groupId>
+                    <artifactId>native-maven-plugin</artifactId>
+                    <version>${native.maven.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>${dockerfile-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <!-- Spring Boot Maven 插件【前面设置了版本就会替换掉 spring-boot-maven-plugin 里默认的版本号】 -->
             <plugin>
